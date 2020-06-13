@@ -1,6 +1,5 @@
 import uuid
 
-
 # -----------------------------------------------------------------------------------------------------
 
 class Person:
@@ -9,11 +8,8 @@ class Person:
         self.age = age
         self.userid = uuid.uuid4()
 
-    def printFunction(self):
-        print("My name is: " + self.name + "and I am: " + str(self.age))
-
     @classmethod
-    def get_user_input(self):
+    def get_user_input(cls):
         fName = input("Enter your name: ")
         x = fName.isalpha()
         while not x:
@@ -26,24 +22,21 @@ class Person:
             print("Value must be a number: ")
             yAge = input("Enter your Age: ")
             y = yAge.isnumeric()
-        return self(fName, yAge)
+        return cls(fName, yAge)
 
 
-def gPrint(name, age):
-    print("My name is: " + name + " and I'm this old: " + age)
+def gPrint(name, age, userid):
+    print("My name is: " + name + " and I'm this old: " + str(age) + str(userid))
 
 
 alist = list()
-print(str(len(alist)))
 person1 = Person("Greg", 53)
 alist.append(person1)
 person2 = Person("Angie", 49)
 alist.append(person2)
 person6 = Person.get_user_input()
 alist.append(person6)
-gPrint(person6.name, person6.age)
-print("Now the list is: " + str(len(alist)) + " long.")
 
 for i in alist:
-    print(i.name + " " + str(i.age) + " UserId = " + str(i.userid))
+    gPrint(i.name, i.age, i.userid)
 
